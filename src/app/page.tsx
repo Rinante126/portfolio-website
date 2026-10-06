@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   return (
-    <main className="futuristic-bg relative min-h-screen overflow-hidden bg-[#030712] text-white">
+    <main className="futuristic-bg portfolio-light relative min-h-screen overflow-hidden bg-[#030712] text-white">
       {/* NAVBAR */}
       {/* BACKGROUND GLOW */}
 <div className="glow -left-52 top-20" />
@@ -150,7 +151,7 @@ export default function Home() {
     {/* NAME */}
     <h1 className="max-w-5xl break-words text-4xl font-black tracking-tight sm:text-6xl md:text-8xl">
       Rinante{" "}
-      <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-500 bg-clip-text text-transparent">
+      <span className="text-glow bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-500 bg-clip-text text-transparent">
         Orwa
       </span>
     </h1>
@@ -222,45 +223,52 @@ export default function Home() {
     </div>
     <div>
       {/* HERO VISUAL */}
+{/* HERO PROFILE */}
 <div className="relative hidden items-center justify-center lg:flex">
 
-  {/* OUTER GLOW */}
-  <div className="absolute h-80 w-80 rounded-full bg-cyan-400/10 blur-[100px]" />
+  {/* BACKGROUND GLOW */}
+  <div className="absolute h-[420px] w-[420px] rounded-full bg-cyan-400/10 blur-[100px]" />
 
-  {/* ORBIT */}
-  <div className="relative flex h-80 w-80 animate-[spin_20s_linear_infinite] items-center justify-center rounded-full border border-cyan-400/20">
+  {/* DECORATIVE RING */}
+  <div className="absolute h-[390px] w-[390px] rounded-full border border-cyan-400/10" />
 
-    <div className="absolute -top-2 h-4 w-4 rounded-full bg-cyan-400 shadow-[0_0_20px_rgba(34,211,238,1)]" />
+  {/* PHOTO */}
+  <div className="group relative h-[460px] w-[360px] transition duration-500 hover:-translate-y-2 overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 shadow-[0_0_80px_rgba(34,211,238,0.12)]">
 
-    <div className="absolute h-64 w-64 rounded-full border border-dashed border-white/10" />
+    <Image
+      src="/profile.png"
+      alt="Rinante Orwa"
+      fill
+      priority
+      sizes="360px"
+      className="object-cover object-center transition duration-700 group-hover:scale-105"
+    />
 
-  </div>
+    {/* DARK GRADIENT */}
+    <div className="absolute inset-0 bg-gradient-to-t from-[#030712]/70 via-transparent to-transparent" />
 
-  {/* CENTER CORE */}
-  <div className="absolute flex h-52 w-52 items-center justify-center rounded-full border border-cyan-400/30 bg-[#030712]/90 shadow-[0_0_80px_rgba(34,211,238,0.15)] backdrop-blur-xl">
+    {/* BOTTOM LABEL */}
+    <div className="absolute bottom-0 left-0 right-0 p-6">
+      <div className="rounded-xl border border-white/10 bg-black/30 p-4 backdrop-blur-md">
+        <p className="font-mono text-xs uppercase tracking-[0.25em] text-cyan-400">
+          REYNAN
+        </p>
 
-    <div className="text-center">
-      <p className="text-5xl font-black tracking-tighter">
-        D4
-        <span className="text-cyan-400">
-          R
-        </span>
-        INX
-      </p>
-
-      <p className="mt-2 font-mono text-xs uppercase tracking-[0.3em] text-gray-500">
-        Build • Learn • Create
-      </p>
+        <p className="mt-1 text-sm text-gray-300">
+          Software • AI • Builder
+        </p>
+      </div>
     </div>
 
   </div>
 
-  {/* DECORATION */}
-  <div className="absolute -right-4 top-10 rounded-lg border border-white/10 bg-white/5 px-3 py-2 font-mono text-xs text-cyan-400 backdrop-blur">
+  {/* TOP DECORATION */}
+  <div className="absolute -right-3 top-10 rounded-xl border border-white/10 bg-[#030712]/80 px-4 py-2 font-mono text-xs text-cyan-400 backdrop-blur">
     &lt;/developer&gt;
   </div>
 
-  <div className="absolute -bottom-3 left-4 rounded-lg border border-white/10 bg-white/5 px-3 py-2 font-mono text-xs text-purple-400 backdrop-blur">
+  {/* BOTTOM DECORATION */}
+  <div className="absolute -bottom-4 -left-3 rounded-xl border border-purple-400/20 bg-[#030712]/80 px-4 py-2 font-mono text-xs text-purple-400 backdrop-blur">
     AI://explore
   </div>
 
