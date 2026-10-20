@@ -639,7 +639,7 @@ export default function Home() {
         </div>
       </article>
 
-      {/* VGI-1 */}
+      {/* AUXANO */}
       <article className="project-shine group relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-7 transition duration-300 hover:-translate-y-2 hover:border-purple-400/40 hover:bg-white/[0.05]">
 
         <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-purple-500/10 blur-3xl transition group-hover:bg-purple-500/20" />
@@ -651,32 +651,32 @@ export default function Home() {
             </span>
 
             <span className="rounded-full border border-purple-400/20 bg-purple-400/10 px-3 py-1 text-xs text-purple-300">
-              Research
+              In development
             </span>
           </div>
 
           <div className="mt-12">
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-purple-400">
-              Artificial Intelligence
+              School Event Management
             </p>
 
             <h3 className="mt-2 text-3xl font-black">
-              VGI-1
+              AUXANO
             </h3>
 
             <p className="mt-1 text-sm text-gray-500">
-              Experimental AI Architecture
+              School Events & Registration Platform
             </p>
           </div>
 
           <p className="mt-6 leading-7 text-gray-400">
-            An experimental AI research project exploring reasoning,
-            memory, verification, learning loops, and approaches toward
-            more reliable intelligent systems.
+            A school event and registration management platform under development,
+            designed with three internal roles, dual approval workflows,
+            and scheduled registration.
           </p>
 
           <div className="mt-7 flex flex-wrap gap-2">
-            {["Python", "AI", "Memory", "Reasoning"].map((tech) => (
+            {["School Events", "Registration", "RBAC", "Approvals"].map((tech) => (
               <span
                 key={tech}
                 className="rounded-lg border border-white/10 bg-black/20 px-3 py-1.5 font-mono text-xs text-gray-400"
@@ -688,7 +688,7 @@ export default function Home() {
 
           <div className="mt-8 border-t border-white/10 pt-6">
             <span className="text-sm text-gray-500">
-              Experimental research concept
+              In development — architecture and implementation
             </span>
           </div>
         </div>
