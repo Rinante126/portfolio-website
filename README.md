@@ -1,36 +1,29 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Rinante Orwa — Personal Portfolio
 
-## Getting Started
+A responsive, interactive portfolio showcasing PROVA OS, AUXANO, and TrackMyRide, featuring Rinante's portrait and the **Beyond the screen.** personal gallery.
 
-First, run the development server:
+## Files
+- `index.html` — semantic page structure, text, and embedded portfolio photographs
+- `style.css` — layout, responsive styling, typography, visual effects
+- `script.js` — animations, project gallery, navigation, and contact interactions
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Run locally
+Open `index.html` with a local development server (for example VS Code Live Server or `python -m http.server 8000`) so the module script loads reliably. Then open `http://localhost:8000`.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Live website
+https://rinante-orwa-portfolio.vercel.app/
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Technologies
+HTML5, CSS3, vanilla JavaScript (ES modules). No build step is required for this static version. Google Fonts and linked project images require network access.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Notes
+This repository branch is an organized source-code version of the live portfolio. The live website may be on an earlier deployment until the split-file version has been tested and deployed. Some project artwork is illustrative, not verified application screenshots. Never commit passwords, keys, or other private records.
 
-## Learn More
+## Source layout
 
-To learn more about Next.js, take a look at the following resources:
+- `index.html` — semantic portfolio structure and embedded personal photos.
+- `style.css` — design tokens, layout, responsive rules, and motion.
+- `script.js` — project gallery, dialog, navigation, and contact interactions.
+- `tests/` — browser interaction regression checks and report (where available).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This refactor is proposed in a review branch. Publish only after browser verification.
