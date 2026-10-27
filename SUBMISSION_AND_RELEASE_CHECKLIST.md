@@ -1,35 +1,38 @@
-# Portfolio — Submission and Release Checklist
+# Portfolio submission and verification checklist
 
-## Submission details
+## Details
 - Student: Rinante Orwa
-- Section: To be supplied and verified
+- Section: Not yet confirmed
 - Live site: https://rinante-orwa-portfolio.vercel.app/
 - GitHub: https://github.com/Rinante126/portfolio-website
-- Review PR: https://github.com/Rinante126/portfolio-website/pull/1
+- Release commit: `57aad77245f6a78db70ef5f74da88a2676d6289f`
+- PR #1: merged into `main`
 
-## Verified on review branch
-- Separate root files: index.html, style.css, script.js.
-- Three projects: PROVA OS, AUXANO, TrackMyRide.
-- Portrait and four Beyond the screen photographs retained.
-- 24/24 local Chromium interaction tests passed at 1440px, 768px, and 390px.
-- Vercel preview returned READY; external HTTP loading could not be confirmed.
+## Completed
+- [x] Root-level `index.html`, `style.css`, `script.js`
+- [x] Projects: PROVA OS, AUXANO, TrackMyRide
+- [x] Portrait and four Beyond the screen gallery images in HTML
+- [x] 24/24 prior local browser interaction checks at 1440px, 768px, and 390px
+- [x] Vercel production deployment READY, matching merge commit and official domain
 
-## Outstanding requirements
-- [ ] Verify external image loading and attribution or replace with authentic project screenshots.
-- [ ] Verify Education content and add correct school, course, year, and section.
-- [ ] Open the Vercel preview on desktop and mobile; test navigation, dialogs, and form.
-- [ ] Merge the PR after verification and deploy the approved exact revision.
-- [ ] Check production and GitHub links in incognito mode.
-- [ ] Capture a production browser screenshot.
-- [ ] Prepare the required brief explanation and project demonstration.
-- [ ] Remove outdated preview notices from README.
+## Still to verify before school submission
+- [ ] Independently load production website, `style.css`, and `script.js` over HTTPS
+- [ ] Open live website and public GitHub repository in an incognito/private browser
+- [ ] Check project imagery: external hosting, permissions, attribution, or replace with original screenshots
+- [ ] Confirm accurate education information and class section
+- [ ] Check all navigation, project dialogs, responsive layout, and contact interaction on live site
+- [ ] Capture screenshot of the live portfolio in a browser
+- [ ] Practice the short demo and verify all statements about project progress
 
-## Technology explanation
-HTML structures the content; CSS provides responsive layouts, typography, and animations; JavaScript implements the interactive work gallery, project dialogs, scroll effects, and contact form validation.
+## Short technology explanation
+HTML5 organizes the content and semantic sections. CSS3 provides an editorial visual design, responsive layout, and animation. Vanilla JavaScript implements the draggable projects gallery, modal dialogs, navigation, and contact input validation. The site is version-controlled on GitHub and hosted on Vercel.
 
-## Demonstration outline
-1. Introduce the site, profile, and career interests.
-2. Navigate About, Skills, Projects, Education, Contact, and Beyond the screen.
-3. Show the three project descriptions and honest project statuses.
-4. Demonstrate mobile responsiveness, card dialog, and form validation.
-5. Explain index.html, style.css, script.js, source control, and deployment.
+## Presentation outline
+1. Introduce portfolio and career goal.
+2. Show Home, About, Skills, three Projects, Education, and Contact.
+3. Demonstrate the Work gallery, project details, and Beyond the screen photo gallery.
+4. Show desktop and mobile layouts and contact validation.
+5. Explain the three root source files, GitHub version control, and Vercel deployment.
+6. Distinguish development work from completed or publicly available projects.
+
+**Note:** Vercel READY and a successful local test do not substitute for independent production HTTP and browser checks.
