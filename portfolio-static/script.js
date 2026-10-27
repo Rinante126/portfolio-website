@@ -1,4 +1,3 @@
-
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const prefersReduced=matchMedia('(prefers-reduced-motion: reduce)').matches;const fine=matchMedia('(pointer:fine)').matches;
 // Editable kinetic hero typography. Press E anywhere outside a form field.
@@ -29,7 +28,7 @@ let chosenBudget='Not specified';$$('.budget-option').forEach(b=>b.addEventListe
 // Single animation clock for scroll, inertia, cursor and canvas.
 let lastFrame=0;function frame(t){const dt=Math.min(3,(t-lastFrame)/16.67||1);lastFrame=t;const factor=prefersReduced?1:1-Math.pow(.92,dt);smoothScroll+=(scrollValue-smoothScroll)*factor;const docHeight=Math.max(1,document.documentElement.scrollHeight-innerHeight);progress.style.transform=`scaleX(${Math.min(1,scrollValue/docHeight)})`;if(fine&&!prefersReduced){dx+=(mx-dx)*.35;dy+=(my-dy)*.35;rx+=(mx-rx)*.15;ry+=(my-ry)*.15;dot.style.transform=`translate3d(${dx}px,${dy}px,0) translate(-50%,-50%)`;ring.style.transform=`translate3d(${rx}px,${ry}px,0) translate(-50%,-50%)`;updateMagnets()}if(!dragging&&Math.abs(velocity)>.05){pos=clampPos(pos+velocity*dt);velocity*=Math.pow(.92,dt)}else if(!dragging)velocity=0;track.style.transform=`translate3d(${pos}px,0,0)`;if(!prefersReduced)drawFluid(t);else if(!canvas.dataset.drawn){drawFluid(0);canvas.dataset.drawn='1'}requestAnimationFrame(frame)}requestAnimationFrame(frame);
 
-// Enhanced JavaScript: real keyboard accessibility, case studies and persisted personalization.
+// Project interactions: real keyboard accessibility, case studies and persisted personalization.
 const caseDialog=$('#caseDialog');
 const caseStudies=[
  {title:'PROVA OS',category:'AI Learning Verification',year:'2026',description:'An educational software project for Philippine secondary learners, designed around a central question: how can students demonstrate understanding without relying on AI-generated answers? Work spans practice flows, progress, authentication, and learning-verification research. Development is ongoing.',tags:['Education','Learning Verification','PWA','In Development'],status:'In development',repository:'https://github.com/Rinante126/PROVA-OS'},
@@ -48,11 +47,9 @@ document.addEventListener('keyup',e=>{if(e.key.toLowerCase()!=='e'||e.altKey||e.
 
 // Gmail editor: avoid publishing a guessed personal address.
 (()=>{const link=document.getElementById('publicEmail');const edit=document.getElementById('editGmail');const hint=document.getElementById('gmailHint');if(!link||!edit)return;const key='orwa_portfolio_gmail';const defaultEmail='orwarinante1@gmail.com';function render(email){if(email){link.textContent=email+' ↗';link.href='mailto:'+email;hint.textContent='Contact me directly by email for projects, collaboration, or opportunities.';}else{link.textContent='ADD YOUR GMAIL ↗';link.href='#contact';}}let saved=defaultEmail;try{saved=localStorage.getItem(key)||defaultEmail;}catch{}render(saved);function configure(){const proposed=prompt('Enter the Gmail address you want displayed publicly:',saved);if(proposed===null)return;const email=proposed.trim();if(!/^[a-zA-Z0-9._%+-]+@gmail\.com$/i.test(email)){alert('Enter a valid @gmail.com address.');return;}saved=email;try{localStorage.setItem(key,email);}catch{}render(email);}edit.addEventListener('click',configure);link.addEventListener('click',e=>{if(!saved){e.preventDefault();configure();}});})();
-
-// V6: one-click contact address copy, with a fallback for restricted local-file browsers.
+// one-click contact address copy, with a fallback for restricted local-file browsers.
 (()=>{const btn=document.getElementById('copyMail');const feedback=document.getElementById('copyFeedback');const link=document.getElementById('publicEmail');if(!btn||!link||!feedback)return;btn.addEventListener('click',async()=>{const email=(link.getAttribute('href')||'').replace(/^mailto:/,'').split('?')[0];if(!email)return;try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(email)}else{const helper=document.createElement('textarea');helper.value=email;helper.style.position='fixed';helper.style.opacity='0';document.body.append(helper);helper.select();const copied=document.execCommand('copy');helper.remove();if(!copied)throw new Error('Clipboard unavailable')}feedback.textContent='Copied!';}catch{feedback.textContent='Select the email address above to copy it.';}})})();
-
-// V7 project indicators follow gallery position; buttons align each card in the viewport.
+// project indicators follow gallery position; buttons align each card in the viewport.
 (()=>{
   const buttons=[...document.querySelectorAll('[data-work-index]')];
   const label=document.getElementById('workActiveName');
