@@ -1,4 +1,5 @@
-const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const $ = (selector) => document.querySelector(selector);
+const $$ = (selector) => [...document.querySelectorAll(selector)];
 const prefersReduced=matchMedia('(prefers-reduced-motion: reduce)').matches;const fine=matchMedia('(pointer:fine)').matches;
 // Editable kinetic hero typography. Press E anywhere outside a form field.
 function setName(el,value){el.textContent='';el.dataset.name=value;[...value].forEach((letter,i)=>{const outer=document.createElement('span');outer.className='char-wrap';const inner=document.createElement('span');inner.className='char';inner.style.setProperty('--char-index',i);inner.textContent=letter===' '?'\u00a0':letter;outer.append(inner);el.append(outer)});if(prefersReduced) $$('.char').forEach(c=>c.style.animation='none')}
@@ -49,33 +50,72 @@ document.addEventListener('keyup',e=>{if(e.key.toLowerCase()!=='e'||e.altKey||e.
 (()=>{const link=document.getElementById('publicEmail');const edit=document.getElementById('editGmail');const hint=document.getElementById('gmailHint');if(!link||!edit)return;const key='orwa_portfolio_gmail';const defaultEmail='orwarinante1@gmail.com';function render(email){if(email){link.textContent=email+' ↗';link.href='mailto:'+email;hint.textContent='Contact me directly by email for projects, collaboration, or opportunities.';}else{link.textContent='ADD YOUR GMAIL ↗';link.href='#contact';}}let saved=defaultEmail;try{saved=localStorage.getItem(key)||defaultEmail;}catch{}render(saved);function configure(){const proposed=prompt('Enter the Gmail address you want displayed publicly:',saved);if(proposed===null)return;const email=proposed.trim();if(!/^[a-zA-Z0-9._%+-]+@gmail\.com$/i.test(email)){alert('Enter a valid @gmail.com address.');return;}saved=email;try{localStorage.setItem(key,email);}catch{}render(email);}edit.addEventListener('click',configure);link.addEventListener('click',e=>{if(!saved){e.preventDefault();configure();}});})();
 // one-click contact address copy, with a fallback for restricted local-file browsers.
 (()=>{const btn=document.getElementById('copyMail');const feedback=document.getElementById('copyFeedback');const link=document.getElementById('publicEmail');if(!btn||!link||!feedback)return;btn.addEventListener('click',async()=>{const email=(link.getAttribute('href')||'').replace(/^mailto:/,'').split('?')[0];if(!email)return;try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(email)}else{const helper=document.createElement('textarea');helper.value=email;helper.style.position='fixed';helper.style.opacity='0';document.body.append(helper);helper.select();const copied=document.execCommand('copy');helper.remove();if(!copied)throw new Error('Clipboard unavailable')}feedback.textContent='Copied!';}catch{feedback.textContent='Select the email address above to copy it.';}})})();
-// project indicators follow gallery position; buttons align each card in the viewport.
-(()=>{
-  const buttons=[...document.querySelectorAll('[data-work-index]')];
-  const label=document.getElementById('workActiveName');
-  const names=['PROVA OS','AUXANO','TRACKMYRIDE'];
-  const cards=[...document.querySelectorAll('#workTrack .project')];
-  const viewport=document.getElementById('workViewport');
-  const track=document.getElementById('workTrack');
-  if(!buttons.length||!viewport||!track)return;
-  function closest(){
-    const center=viewport.getBoundingClientRect().left+viewport.clientWidth/2;
-    let best=0,distance=Infinity;
-    cards.forEach((card,i)=>{const r=card.getBoundingClientRect();const d=Math.abs(r.left+r.width/2-center);if(d<distance){distance=d;best=i}});
-    return best;
+// Keep gallery controls synchronized with the card nearest the viewport center.
+// Recalculate only when the gallery moves or the window resizes.
+function initializeWorkIndicators() {
+  const buttons = [...document.querySelectorAll('[data-work-index]')];
+  const cards = [...document.querySelectorAll('#workTrack .project')];
+  const activeLabel = document.getElementById('workActiveName');
+  if (!buttons.length || !cards.length || !viewport || !track) return;
+
+  const projectNames = cards.map((card) =>
+    card.querySelector('.project-bottom h3')?.textContent?.trim() ||
+    card.querySelector('h3')?.textContent?.trim() ||
+    'PROJECT'
+  );
+  let updateQueued = false;
+
+  function updateActiveIndicator() {
+    updateQueued = false;
+    const visibleCenter = viewport.getBoundingClientRect().left + viewport.clientWidth / 2;
+    let nearest = 0;
+    let bestDistance = Infinity;
+
+    cards.forEach((card, index) => {
+      const bounds = card.getBoundingClientRect();
+      const distance = Math.abs(bounds.left + bounds.width / 2 - visibleCenter);
+      if (distance < bestDistance) {
+        nearest = index;
+        bestDistance = distance;
+      }
+    });
+
+    buttons.forEach((button, index) => {
+      button.setAttribute('aria-current', String(index === nearest));
+    });
+    if (activeLabel) {
+      const current = String(nearest + 1).padStart(2, '0');
+      const total = String(cards.length).padStart(2, '0');
+      activeLabel.textContent = `${current} / ${total} — ${projectNames[nearest]}`;
+    }
   }
-  function update(){const index=closest();buttons.forEach((btn,i)=>btn.setAttribute('aria-current',String(i===index)));if(label)label.textContent=String(index+1).padStart(2,'0')+' / '+String(cards.length).padStart(2,'0')+' — '+names[index]}
-  buttons.forEach((btn,i)=>btn.addEventListener('click',()=>{
-    const card=cards[i];if(!card)return;
-    const desired=-(card.offsetLeft + card.offsetWidth/2 - viewport.clientWidth/2);
-    const max=Math.max(0,track.scrollWidth-viewport.clientWidth);
-    pos=Math.max(-max,Math.min(0,desired));velocity=0;
-    track.style.transform='translate3d('+pos+'px,0,0)';update();
-  }));
-  new MutationObserver(()=>requestAnimationFrame(update)).observe(track,{attributes:true,attributeFilter:['style']});
-  window.addEventListener('resize',()=>requestAnimationFrame(update),{passive:true});
-  requestAnimationFrame(update);
-})();
+
+  function requestIndicatorUpdate() {
+    if (updateQueued) return;
+    updateQueued = true;
+    requestAnimationFrame(updateActiveIndicator);
+  }
+
+  buttons.forEach((button, index) => {
+    button.addEventListener('click', () => {
+      const card = cards[index];
+      if (!card) return;
+      const desired = -(card.offsetLeft + card.offsetWidth / 2 - viewport.clientWidth / 2);
+      pos = clampPos(desired);
+      velocity = 0;
+      track.style.transform = `translate3d(${pos}px,0,0)`;
+      requestIndicatorUpdate();
+    });
+  });
+
+  // The gallery is transform-driven; observe transforms instead of polling geometry.
+  const movementObserver = new MutationObserver(requestIndicatorUpdate);
+  movementObserver.observe(track, { attributes: true, attributeFilter: ['style'] });
+  window.addEventListener('resize', requestIndicatorUpdate, { passive: true });
+  requestIndicatorUpdate();
+}
+initializeWorkIndicators();
+
 // The mailto action opens the user's email client; it does not silently transmit messages.
 (()=>{
   const button=document.getElementById('openEmailDraft');
