@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Rinante Orwa — Personal Portfolio
 
-## Getting Started
+Personal portfolio built with HTML5, CSS3, and vanilla JavaScript. Features PROVA OS, AUXANO, and TrackMyRide, a profile portrait, and the **Beyond the screen** personal photo gallery.
 
-First, run the development server:
+## Project structure
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- `index.html` — semantic page content and embedded personal photos
+- `style.css` — editorial styling, typography, responsive layouts, and motion
+- `script.js` — gallery controls, project dialogs, navigation, and contact interactions
+- `SUBMISSION_AND_RELEASE_CHECKLIST.md` — school requirements and release verification notes
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Older Next.js scaffolding remains in the review branch and is not required to run the static root-level portfolio.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Run locally
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+From the repository root, run `python -m http.server 8000`, or open with VS Code Live Server. Visit `http://localhost:8000`.
 
-## Learn More
+## Websites
 
-To learn more about Next.js, take a look at the following resources:
+- Current production URL: https://rinante-orwa-portfolio.vercel.app/
+- Split-file review preview: https://rinante-orwa-portfolio-91ruf1hmk-orwarinante1-6673.vercel.app/
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Release note:** The preview is READY according to Vercel, but direct HTTP and cross-device verification remain pending. The root-level split-file version has not yet been merged or published to production.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Project imagery
 
-## Deploy on Vercel
+The profile and personal gallery photographs are embedded in the HTML. Some featured-work images are externally hosted illustrations rather than screenshots of the actual projects. Before final submission, verify image availability, permissions, and credits, or replace them with original project screenshots.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Technology and interactions
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+HTML5 provides structure and content. CSS3 handles the responsive editorial design. Vanilla JavaScript controls the draggable Work gallery, project detail dialogs, navigation, animations, and contact validation.
+
+## School submission
+
+Provide your verified class/section, the production URL, the public repository URL, a browser screenshot, and a short explanation of your code. Follow `SUBMISSION_AND_RELEASE_CHECKLIST.md` before final release.
