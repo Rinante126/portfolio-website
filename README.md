@@ -9,7 +9,7 @@ Personal portfolio built with HTML5, CSS3, and vanilla JavaScript. Features PROV
 - `script.js` — gallery controls, project dialogs, navigation, and contact interactions
 - `SUBMISSION_AND_RELEASE_CHECKLIST.md` — school requirements and release verification notes
 
-Older Next.js scaffolding remains in the review branch and is not required to run the static root-level portfolio.
+Some unused Next.js scaffold files remain in the repository; the published portfolio uses the root-level static HTML, CSS, and JavaScript files.
 
 ## Run locally
 
@@ -18,9 +18,9 @@ From the repository root, run `python -m http.server 8000`, or open with VS Code
 ## Websites
 
 - Current production URL: https://rinante-orwa-portfolio.vercel.app/
-- Split-file review preview: https://rinante-orwa-portfolio-91ruf1hmk-orwarinante1-6673.vercel.app/
+- GitHub source: https://github.com/Rinante126/portfolio-website
 
-**Release note:** The preview is READY according to Vercel, but direct HTTP and cross-device verification remain pending. The root-level split-file version has not yet been merged or published to production.
+**Release note:** Pull Request #1 was merged into `main` at commit `57aad77245f6a78db70ef5f74da88a2676d6289f`. Vercel reports the matching production deployment as READY and assigned to the official domain. An independent external HTTP and cross-device check is still outstanding.
 
 ## Project imagery
 
